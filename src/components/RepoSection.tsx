@@ -56,7 +56,7 @@ function RepoList({ repos }: { repos: GithubRepo[] }) {
     <Highlight
       hover
       click={false}
-      className="inset-0 bg-zinc-200/20 rounded-lg cursor-pointer"
+      className="inset-0 bg-zinc-200/10 rounded-lg cursor-pointer"
       controlledItems
     >
       <section>
@@ -81,9 +81,7 @@ function RepoCardContent({ repo }: { repo: GithubRepo }) {
   return (
     <div className="flex items-start justify-between gap-2">
       <div className="min-w-0 flex-1">
-        <h3 className="text-sm font-medium text-zinc-900 group-hover:text-zinc-600 truncate">
-          {repo.name}
-        </h3>
+        <h3 className="text-sm font-medium truncate">{repo.name}</h3>
         {repo.description && (
           <p className="mt-1 text-xs text-zinc-500 line-clamp-2">
             {repo.description}
