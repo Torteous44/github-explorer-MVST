@@ -54,19 +54,20 @@ export function RepoSection({
 function RepoList({ repos }: { repos: GithubRepo[] }) {
   return (
     <Highlight
+      mode="parent"
       hover
       click={false}
-      className="inset-0 bg-zinc-200/10 rounded-lg cursor-pointer"
+      className="bg-zinc-200/20 rounded-lg"
       controlledItems
     >
       <section>
         {repos.map((repo) => (
-          <HighlightItem key={repo.id} asChild>
+          <HighlightItem key={repo.id}>
             <a
               href={repo.html_url}
               target="_blank"
               rel="noreferrer"
-              className="group block py-1.5  rounded-lg px-2"
+              className="group block py-1.5 rounded-lg px-2 relative z-10"
             >
               <RepoCardContent repo={repo} />
             </a>
