@@ -57,7 +57,7 @@ function App() {
             }}
           >
             <span
-              className="text-[20rem] font-black leading-none tracking-normal text-zinc-200"
+              className="text-[6rem] sm:text-[10rem] md:text-[16rem] lg:text-[20rem] font-black leading-none tracking-normal text-zinc-200"
               style={{ fontFamily: '"Instrument Sans", sans-serif' }}
             >
               MVST
@@ -86,8 +86,8 @@ function App() {
             )}
           </div>
 
-          {/* Down arrow at bottom left */}
-          <div className="absolute bottom-6 left-8">
+          {/* Down arrow at bottom left - hidden on mobile */}
+          <div className="absolute bottom-6 left-4 sm:left-8 hidden sm:block">
             <ArrowDownIcon className="h-6 w-6 text-zinc-400" />
           </div>
 
@@ -105,7 +105,7 @@ function App() {
         </div>
         {/* About Section */}
         <div className="flex justify-center px-4 py-8">
-          <p className="text-sm text-zinc-400">
+          <p className="text-xs sm:text-sm text-zinc-400 text-center max-w-sm">
             MVST internship application. Search GitHub users. React, TypeScript,
             Tailwind.{" "}
             <a

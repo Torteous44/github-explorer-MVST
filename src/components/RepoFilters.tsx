@@ -63,13 +63,13 @@ export function RepoFilters({
         </form>
 
         {/* Filter repos */}
-        <div className="flex items-center gap-3">
-          <div className="flex flex-1 items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-zinc-100">
-            <MagnifyingGlassIcon className="h-3 w-3 text-zinc-400" />
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex flex-1 min-w-0 items-center gap-2 rounded-lg px-2 sm:px-3 py-2 ring-1 ring-zinc-100">
+            <MagnifyingGlassIcon className="h-3 w-3 text-zinc-400 shrink-0" />
             <input
               type="text"
-              className="w-full bg-transparent text-xs text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
-              placeholder="Filter repositories..."
+              className="w-full min-w-0 bg-transparent text-xs text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
+              placeholder="Filter..."
               value={searchTerm}
               onChange={(event) => onSearchTermChange(event.target.value)}
             />
@@ -81,7 +81,7 @@ export function RepoFilters({
             onSelect={onLanguageChange}
           />
 
-          <span className="text-xs text-zinc-400 tabular-nums pr-1">
+          <span className="text-xs text-zinc-400 tabular-nums shrink-0">
             {repoCount}/{totalRepos}
           </span>
         </div>

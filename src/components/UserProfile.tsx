@@ -23,15 +23,15 @@ export function UserProfile({ user }: UserProfileProps) {
     : null;
 
   return (
-    <div className="flex flex-col gap-4">
-      <Avatar className="h-48 w-48 rounded-full border-4 border-white shadow-lg">
+    <div className="flex flex-col gap-4 items-center lg:items-start pb-6">
+      <Avatar className="h-24 w-24 sm:h-32 sm:w-32 lg:h-48 lg:w-48 rounded-full border-4 border-white shadow-lg">
         <AvatarImage src={user.avatar_url} alt={user.login} />
-        <AvatarFallback className="text-4xl">
+        <AvatarFallback className="text-2xl sm:text-3xl lg:text-4xl">
           {user.login.slice(0, 2).toUpperCase()}
         </AvatarFallback>
       </Avatar>
 
-      <div className="space-y-1">
+      <div className="space-y-1 text-center lg:text-left">
         {user.name && (
           <h2 className="text-xl font-semibold text-zinc-900">{user.name}</h2>
         )}
@@ -45,9 +45,13 @@ export function UserProfile({ user }: UserProfileProps) {
         </a>
       </div>
 
-      {user.bio && <p className="text-sm text-zinc-700">{user.bio}</p>}
+      {user.bio && (
+        <p className="text-sm text-zinc-700 text-center lg:text-left">
+          {user.bio}
+        </p>
+      )}
 
-      <div className="flex items-center gap-4 text-sm text-zinc-600">
+      <div className="flex items-center justify-center lg:justify-start gap-4 text-sm text-zinc-600">
         <span>
           <strong className="text-zinc-900">{user.followers}</strong> followers
         </span>
