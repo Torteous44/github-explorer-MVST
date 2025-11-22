@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import { useGithubUserRepos } from "@/hooks/useGithubUserRepos";
 import { applyRepoFilters, extractLanguages } from "@/utils/githubFilters";
 import { SearchSection } from "@/components/SearchSection";
@@ -41,26 +42,81 @@ function App() {
   // Centered spotlight view (initial state)
   if (!showResults) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-100 px-4">
-        <div className="w-full max-w-md space-y-4">
-          <SearchSection
-            username={usernameInput}
-            onUsernameChange={handleUsernameChange}
-            onSubmitUsername={handleUsernameSubmit}
-            loading={loading}
-          />
+      <div className="bg-zinc-100">
+        {/* Hero Section - Full viewport */}
+        <div className="relative flex min-h-screen items-center justify-center px-4 overflow-hidden">
+          {/* Background MVST text */}
+          <div
+            className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+            aria-hidden="true"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, black 0%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, black 0%, transparent 100%)",
+            }}
+          >
+            <span
+              className="text-[20rem] font-black leading-none tracking-normal text-zinc-200"
+              style={{ fontFamily: '"Instrument Sans", sans-serif' }}
+            >
+              MVST
+            </span>
+          </div>
 
-          {loading && (
-            <div className="space-y-3 pt-4">
-              <IndeterminateProgress className="h-0.5" />
-            </div>
-          )}
+          {/* Content */}
+          <div className="relative z-10 w-full max-w-md space-y-4">
+            <SearchSection
+              username={usernameInput}
+              onUsernameChange={handleUsernameChange}
+              onSubmitUsername={handleUsernameSubmit}
+              loading={loading}
+            />
 
-          {error && (
-            <div className="pt-2">
-              <ErrorMessage error={error} />
-            </div>
-          )}
+            {loading && (
+              <div className="space-y-3 pt-4">
+                <IndeterminateProgress className="h-0.5" />
+              </div>
+            )}
+
+            {error && (
+              <div className="pt-2">
+                <ErrorMessage error={error} />
+              </div>
+            )}
+          </div>
+
+          {/* Down arrow at bottom left */}
+          <div className="absolute bottom-6 left-8">
+            <ArrowDownIcon className="h-6 w-6 text-zinc-400" />
+          </div>
+
+          {/* GitHub repo link at bottom */}
+          <div className="absolute bottom-6 left-0 right-0 flex items-center justify-center">
+            <a
+              href="https://github.com/Torteous44/github-explorer-MVST/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs text-zinc-400 hover:text-zinc-600 transition-colors"
+            >
+              github.com/Torteous44/github-explorer-MVST
+            </a>
+          </div>
+        </div>
+        {/* About Section */}
+        <div className="flex justify-center px-4 py-8">
+          <p className="text-sm text-zinc-400">
+            MVST internship application. Search GitHub users. React, TypeScript,
+            Tailwind.{" "}
+            <a
+              href="https://github.com/Torteous44"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-zinc-600 transition-colors"
+            >
+              Matthew Porteous
+            </a>
+          </p>
         </div>
       </div>
     );

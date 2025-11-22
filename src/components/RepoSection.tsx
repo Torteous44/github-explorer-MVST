@@ -1,6 +1,10 @@
 import type { GithubApiError, GithubRepo } from "@/api/github";
 import { IndeterminateProgress } from "./IndeterminateProgress";
 import { ErrorMessage } from "./ErrorMessage";
+import {
+  Highlight,
+  HighlightItem,
+} from "@/components/animate-ui/primitives/effects/highlight";
 
 interface RepoSectionProps {
   loading: boolean;
@@ -9,7 +13,12 @@ interface RepoSectionProps {
   totalRepos: number;
 }
 
-export function RepoSection({ loading, error, repos, totalRepos }: RepoSectionProps) {
+export function RepoSection({
+  loading,
+  error,
+  repos,
+  totalRepos,
+}: RepoSectionProps) {
   if (loading) {
     return (
       <div className="space-y-4">
@@ -44,11 +53,19 @@ export function RepoSection({ loading, error, repos, totalRepos }: RepoSectionPr
 
 function RepoList({ repos }: { repos: GithubRepo[] }) {
   return (
-    <section className="divide-y divide-zinc-100">
-      {repos.map((repo) => (
-        <RepoCard key={repo.id} repo={repo} />
-      ))}
-    </section>
+    <Highlight
+      hover
+      className="inset-0 bg-zinc-200/20 rounded-lg cursor-pointer "
+      controlledItems
+    >
+      <section>
+        {repos.map((repo) => (
+          <HighlightItem key={repo.id}>
+            <RepoCard repo={repo} />
+          </HighlightItem>
+        ))}
+      </section>
+    </Highlight>
   );
 }
 
@@ -58,7 +75,7 @@ function RepoCard({ repo }: { repo: GithubRepo }) {
       href={repo.html_url}
       target="_blank"
       rel="noreferrer"
-      className="group block py-3 transition-colors hover:bg-zinc-50/50 -mx-2 px-2 rounded-lg"
+      className="group block py-3 -mx-2 rounded-lg px-6"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
