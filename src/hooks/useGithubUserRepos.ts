@@ -1,7 +1,13 @@
+/**
+ * React hook for fetching GitHub user data and repositories.
+ * @module hooks/useGithubUserRepos
+ */
+
 import { useState } from "react";
 import { fetchGithubUserWithRepos, GithubApiError } from "../api/github";
 import type { GithubUserWithRepos } from "../api/github";
 
+/** Return type for the useGithubUserRepos hook. */
 export interface UseGithubUserReposResult {
   data: GithubUserWithRepos | null;
   loading: boolean;
@@ -10,7 +16,23 @@ export interface UseGithubUserReposResult {
 }
 
 /**
- * Simple hook encapsulating loading logic for fetching GitHub user + repos.
+ * Hook for fetching and managing GitHub user data and repositories.
+ * Handles loading states, error handling, and data caching.
+ *
+ * @returns Object containing data, loading state, error, and load function
+ *
+ * @example
+ * ```tsx
+ * const { data, loading, error, load } = useGithubUserRepos();
+ *
+ * const handleSearch = (username: string) => {
+ *   load(username);
+ * };
+ *
+ * if (loading) return <Spinner />;
+ * if (error) return <Error message={error.message} />;
+ * if (data) return <UserProfile user={data.user} repos={data.repos} />;
+ * ```
  */
 export function useGithubUserRepos(): UseGithubUserReposResult {
   const [data, setData] = useState<GithubUserWithRepos | null>(null);
