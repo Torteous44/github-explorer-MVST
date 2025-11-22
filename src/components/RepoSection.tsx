@@ -55,13 +55,21 @@ function RepoList({ repos }: { repos: GithubRepo[] }) {
   return (
     <Highlight
       hover
-      className="inset-0 bg-zinc-200/20 rounded-lg cursor-pointer "
+      click={false}
+      className="inset-0 bg-zinc-200/20 rounded-lg cursor-pointer"
       controlledItems
     >
       <section>
         {repos.map((repo) => (
-          <HighlightItem key={repo.id}>
-            <RepoCard repo={repo} />
+          <HighlightItem key={repo.id} asChild>
+            <a
+              href={repo.html_url}
+              target="_blank"
+              rel="noreferrer"
+              className="group block py-1.5  rounded-lg px-2"
+            >
+              <RepoCardContent repo={repo} />
+            </a>
           </HighlightItem>
         ))}
       </section>
@@ -69,43 +77,36 @@ function RepoList({ repos }: { repos: GithubRepo[] }) {
   );
 }
 
-function RepoCard({ repo }: { repo: GithubRepo }) {
+function RepoCardContent({ repo }: { repo: GithubRepo }) {
   return (
-    <a
-      href={repo.html_url}
-      target="_blank"
-      rel="noreferrer"
-      className="group block py-3 -mx-2 rounded-lg px-6"
-    >
-      <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0 flex-1">
-          <h3 className="text-sm font-medium text-zinc-900 group-hover:text-zinc-600 truncate">
-            {repo.name}
-          </h3>
-          {repo.description && (
-            <p className="mt-1 text-xs text-zinc-500 line-clamp-2">
-              {repo.description}
-            </p>
+    <div className="flex items-start justify-between gap-2">
+      <div className="min-w-0 flex-1">
+        <h3 className="text-sm font-medium text-zinc-900 group-hover:text-zinc-600 truncate">
+          {repo.name}
+        </h3>
+        {repo.description && (
+          <p className="mt-1 text-xs text-zinc-500 line-clamp-2">
+            {repo.description}
+          </p>
+        )}
+        <div className="mt-2 flex items-center gap-3 text-[11px] text-zinc-400">
+          {repo.language && (
+            <span className="flex items-center gap-1">
+              <span className="h-2 w-2 rounded-full bg-zinc-300" />
+              {repo.language}
+            </span>
           )}
-          <div className="mt-2 flex items-center gap-3 text-[11px] text-zinc-400">
-            {repo.language && (
-              <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-zinc-300" />
-                {repo.language}
-              </span>
-            )}
-            <span>★ {repo.stargazers_count}</span>
-            <span>⑂ {repo.forks_count}</span>
-          </div>
+          <span>★ {repo.stargazers_count}</span>
+          <span>⑂ {repo.forks_count}</span>
         </div>
-        <span className="shrink-0 text-[10px] text-zinc-300">
-          {new Date(repo.updated_at).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-          })}
-        </span>
       </div>
-    </a>
+      <span className="shrink-0 text-[10px] text-zinc-300">
+        {new Date(repo.updated_at).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        })}
+      </span>
+    </div>
   );
 }
 
