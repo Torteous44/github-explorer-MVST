@@ -8,6 +8,7 @@ import { RepoFilters } from "@/components/RepoFilters";
 import { RepoSection } from "@/components/RepoSection";
 import { ErrorMessage } from "@/components/ErrorMessage";
 import { IndeterminateProgress } from "@/components/IndeterminateProgress";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 function App() {
   const [usernameInput, setUsernameInput] = useState("");
@@ -43,6 +44,11 @@ function App() {
   if (!showResults) {
     return (
       <div className="bg-zinc-100">
+        {/* Theme Toggle - Top Right */}
+        <div className="fixed top-4 right-4 z-50">
+          <ThemeToggle />
+        </div>
+
         {/* Hero Section - Full viewport */}
         <div className="relative flex min-h-screen items-center justify-center px-4 overflow-hidden">
           {/* Background MVST text */}
@@ -125,6 +131,11 @@ function App() {
   // Results view (two-column layout)
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900">
+      {/* Theme Toggle - Top Right */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       <div className="mx-auto max-w-6xl px-4 py-8">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_1fr]">
           <aside className="lg:sticky lg:top-8 lg:self-start">

@@ -14,5 +14,5 @@ export function ErrorMessage({ error }: ErrorMessageProps) {
     message = "Network error while contacting GitHub. Please retry.";
   }
 
-  return <div className="py-3 text-xs text-red-700 text-center">{message}</div>;
+  return <div className="py-3 text-xs text-red-700 dark:text-red-400 text-center">{message}</div>;
 }

@@ -21,7 +21,7 @@ export function LanguageDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-1.5 rounded-lg bg-zinc-100 px-2.5 py-1.5 text-xs font-medium text-zinc-600 transition hover:bg-zinc-200 focus:outline-none">
+        <button className="flex items-center gap-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400 transition hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none">
           <span className="h-2 w-2 rounded-full bg-zinc-400" />
           {selectedLanguage ?? "All"}
           <ChevronDownIcon className="h-3 w-3 text-zinc-400" />
@@ -30,7 +30,7 @@ export function LanguageDropdown({
       <DropdownMenuContent align="end" className="min-w-[140px]">
         <DropdownMenuItem
           onClick={() => onSelect(null)}
-          className={selectedLanguage === null ? "bg-zinc-50" : ""}
+          className={selectedLanguage === null ? "bg-zinc-50 dark:bg-zinc-800" : ""}
         >
           All languages
         </DropdownMenuItem>
@@ -39,7 +39,7 @@ export function LanguageDropdown({
           <DropdownMenuItem
             key={language}
             onClick={() => onSelect(language)}
-            className={selectedLanguage === language ? "bg-zinc-50" : ""}
+            className={selectedLanguage === language ? "bg-zinc-50 dark:bg-zinc-800" : ""}
           >
             {language}
           </DropdownMenuItem>

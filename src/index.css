@@ -6,8 +6,9 @@
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
+        /* Light mode colors */
+        --background: 0 0% 96.1%; /* zinc-100 equivalent */
+        --foreground: 0 0% 9%; /* zinc-900 equivalent */
         --popover: 0 0% 100%;
         --popover-foreground: 0 0% 3.9%;
         --primary: 0 0% 9%;
@@ -16,9 +17,55 @@
         --accent-foreground: 0 0% 9%;
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
+        --muted: 0 0% 96.1%;
         --muted-foreground: 0 0% 45.1%;
         --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
         --radius: 0.5rem;
+
+        /* Zinc palette variables for light mode */
+        --zinc-50: 0 0% 98%;
+        --zinc-100: 0 0% 96.1%;
+        --zinc-200: 0 0% 89.8%;
+        --zinc-300: 0 0% 83.1%;
+        --zinc-400: 0 0% 63.9%;
+        --zinc-500: 0 0% 45.1%;
+        --zinc-600: 0 0% 32.2%;
+        --zinc-700: 0 0% 25.1%;
+        --zinc-800: 0 0% 14.9%;
+        --zinc-900: 0 0% 9%;
+    }
+
+    .dark {
+        /* Dark mode colors */
+        --background: 0 0% 9%; /* zinc-900 equivalent */
+        --foreground: 0 0% 98%; /* zinc-50 equivalent */
+        --popover: 0 0% 14.9%; /* zinc-800 */
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --accent: 0 0% 14.9%; /* zinc-800 */
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 50.6%;
+        --destructive-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --border: 0 0% 25.1%; /* zinc-700 */
+        --input: 0 0% 25.1%;
+        --ring: 0 0% 83.1%;
+
+        /* Zinc palette variables for dark mode */
+        --zinc-50: 0 0% 9%;
+        --zinc-100: 0 0% 14.9%;
+        --zinc-200: 0 0% 25.1%;
+        --zinc-300: 0 0% 32.2%;
+        --zinc-400: 0 0% 63.9%;
+        --zinc-500: 0 0% 63.9%;
+        --zinc-600: 0 0% 83.1%;
+        --zinc-700: 0 0% 89.8%;
+        --zinc-800: 0 0% 96.1%;
+        --zinc-900: 0 0% 98%;
     }
 
     * {
@@ -26,7 +73,7 @@
     }
 
     html {
-        @apply bg-zinc-100;
+        @apply bg-background transition-colors duration-300;
     }
 
     body {
@@ -38,8 +85,48 @@
             BlinkMacSystemFont,
             "Segoe UI",
             sans-serif;
-        @apply bg-background text-foreground;
+        @apply bg-background text-foreground transition-colors duration-300;
     }
+}
+
+/* Custom zinc color utilities that respect dark mode */
+@layer utilities {
+    .bg-zinc-50 { background-color: hsl(var(--zinc-50)); }
+    .bg-zinc-100 { background-color: hsl(var(--zinc-100)); }
+    .bg-zinc-200 { background-color: hsl(var(--zinc-200)); }
+    .bg-zinc-300 { background-color: hsl(var(--zinc-300)); }
+    .bg-zinc-400 { background-color: hsl(var(--zinc-400)); }
+    .bg-zinc-500 { background-color: hsl(var(--zinc-500)); }
+    .bg-zinc-600 { background-color: hsl(var(--zinc-600)); }
+    .bg-zinc-700 { background-color: hsl(var(--zinc-700)); }
+    .bg-zinc-800 { background-color: hsl(var(--zinc-800)); }
+    .bg-zinc-900 { background-color: hsl(var(--zinc-900)); }
+
+    .text-zinc-50 { color: hsl(var(--zinc-50)); }
+    .text-zinc-100 { color: hsl(var(--zinc-100)); }
+    .text-zinc-200 { color: hsl(var(--zinc-200)); }
+    .text-zinc-300 { color: hsl(var(--zinc-300)); }
+    .text-zinc-400 { color: hsl(var(--zinc-400)); }
+    .text-zinc-500 { color: hsl(var(--zinc-500)); }
+    .text-zinc-600 { color: hsl(var(--zinc-600)); }
+    .text-zinc-700 { color: hsl(var(--zinc-700)); }
+    .text-zinc-800 { color: hsl(var(--zinc-800)); }
+    .text-zinc-900 { color: hsl(var(--zinc-900)); }
+
+    .border-zinc-50 { border-color: hsl(var(--zinc-50)); }
+    .border-zinc-100 { border-color: hsl(var(--zinc-100)); }
+    .border-zinc-200 { border-color: hsl(var(--zinc-200)); }
+    .border-zinc-300 { border-color: hsl(var(--zinc-300)); }
+    .border-zinc-400 { border-color: hsl(var(--zinc-400)); }
+    .border-zinc-500 { border-color: hsl(var(--zinc-500)); }
+    .border-zinc-600 { border-color: hsl(var(--zinc-600)); }
+    .border-zinc-700 { border-color: hsl(var(--zinc-700)); }
+    .border-zinc-800 { border-color: hsl(var(--zinc-800)); }
+    .border-zinc-900 { border-color: hsl(var(--zinc-900)); }
+
+    .hover\:text-zinc-600:hover { color: hsl(var(--zinc-600)); }
+    .hover\:bg-zinc-50:hover { background-color: hsl(var(--zinc-50)); }
+    .hover\:bg-zinc-100:hover { background-color: hsl(var(--zinc-100)); }
 }
 
 @keyframes progress-slide {
